@@ -1,0 +1,11 @@
+/**/**/.DS_Store
+/target/
+.factorypath
+.classpath
+.settings
+build/
+.project
+.springBeans
+/.apt_generated/
+/.idea/
+springboot-springdata-elasticsearch-example.iml
