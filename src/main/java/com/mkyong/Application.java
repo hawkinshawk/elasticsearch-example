@@ -36,17 +36,17 @@ public class Application implements CommandLineRunner {
         Author author1 = new Author("Rambabu Posa", new LocalDate(1986, 5, 23));
         LocalDate author2Birthdate = new LocalDate(1920, 8, 5);
         Author author2 = new Author("Helmut Schmidt", author2Birthdate);
+//
+//        bookService.save(new Book("1001", "Elasticsearch Basics", author1, LocalDate.now(),"zusammenfassung1"));
+//        bookService.save(new Book("1002", "Apache Lucene Basics", author1, LocalDate.now(),"zusammenfassung2"));
+//        bookService.save(new Book("1003", "Apache Solr Basics", author1, LocalDate.now(),"zusammenfassung3"));
+//        bookService
+//                .save(new Book("1004", "Harry Potter 1", author2, LocalDate.now().minusDays(15)));
 
-        bookService.save(new Book("1001", "Elasticsearch Basics", author1, LocalDate.now(),"zusammenfassung1"));
-        bookService.save(new Book("1002", "Apache Lucene Basics", author1, LocalDate.now(),"zusammenfassung2"));
-        bookService.save(new Book("1003", "Apache Solr Basics", author1, LocalDate.now(),"zusammenfassung3"));
-        bookService
-                .save(new Book("1004", "Harry Potter 1", author2, LocalDate.now().minusDays(15)));
-
-//        final Book book = new Book("1005", "Apache Commons Basics 1997", author1, LocalDate.now());
-//        book.setZusammenfassung("Schönes Buch über Apache Commons von 1997 mit Summary!!!!!!");
-//        book.setIssue(new Issue("1997"));
-//        bookService.save(book);
+        final Book book = new Book("1005", "Apache Commons Basics 1997", author1, LocalDate.now());
+        book.setSummary("Schönes Buch über Apache Commons von 1997 mit Summary!!!!!!");
+        book.setIssue(new Issue("1997"));
+        bookService.save(book);
 
         //        final Iterable<Book> all = bookService.findAll();
         //        for (Book book : all) {

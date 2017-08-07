@@ -9,6 +9,7 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.index.reindex.ReindexPlugin;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,16 +48,17 @@ public class EsConfig {
 
         Settings esSettings = Settings.settingsBuilder()
                 .put("cluster.name", EsClusterName)
+                .put("script.engine.groovy.inline.update","on")
                 .build();
 
         //https://www.elastic.co/guide/en/elasticsearch/guide/current/_transport_client_versus_node_client.html
         return TransportClient.builder()
                 .settings(esSettings)
+                .addPlugin(ReindexPlugin.class)
                 .build()
                 .addTransportAddress(
                         new InetSocketTransportAddress(InetAddress.getByName(EsHost), EsPort));
     }
-
 
     @Bean
     public EntityMapper entityMapper() {

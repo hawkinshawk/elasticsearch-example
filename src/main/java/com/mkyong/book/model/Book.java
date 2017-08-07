@@ -1,5 +1,7 @@
 package com.mkyong.book.model;
 
+import com.mkyong.Constants;
+
 import org.joda.time.LocalDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,13 +9,13 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 
-@Document(indexName = "book_index_alias", type = "book")
+@Document(createIndex = false, indexName = Constants.BOOK_INDEX_ALIAS, type = Constants.BOOK_TYPE_NAME)
 public class Book {
 
     @Id
     private String id;
 
-    private String zusammenfassung;
+    private String summary;
 
     private String title;
 
@@ -23,30 +25,30 @@ public class Book {
     @Field(type = FieldType.Date)
     private LocalDate releaseDate;
 
-
-
     @Field(type = FieldType.Nested)
     private Issue issue;
 
     public Book() {
     }
 
-    public Book(String id, String title, Author author, LocalDate releaseDate, String zusammenfassung,
+    public Book(String id, String title, Author author, LocalDate releaseDate,
+            String summary,
             Issue issue) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.releaseDate = releaseDate;
-        this.zusammenfassung = zusammenfassung;
+        this.summary = summary;
         this.issue = issue;
     }
 
-    public Book(String id, String title, Author author, LocalDate releaseDate, String zusammenfassung) {
+    public Book(String id, String title, Author author, LocalDate releaseDate,
+            String summary) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.releaseDate = releaseDate;
-        this.zusammenfassung = zusammenfassung;
+        this.summary = summary;
     }
 
     public Book(String id, String title, Author author, LocalDate releaseDate) {
@@ -105,16 +107,16 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
-                ", zusammenfassung='" + zusammenfassung + '\'' +
+                ", summary='" + summary + '\'' +
                 ", issue='" + issue + '\'' +
                 '}';
     }
 
-    public String getZusammenfassung() {
-        return zusammenfassung;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setZusammenfassung(String zusammenfassung) {
-        this.zusammenfassung = zusammenfassung;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
